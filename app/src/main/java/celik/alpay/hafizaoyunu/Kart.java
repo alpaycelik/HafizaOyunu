@@ -7,13 +7,14 @@ import android.widget.Button;
 
 public class Kart extends Button{
     boolean acikMi = false;
-    int resimID;
+    boolean cevrilebilir = true;
     int arkaPlanID;
     int onPlanID;
     Drawable arka;
     Drawable on;
     public Kart(Context context, int id) {
         super(context);
+        setId(id);
         arkaPlanID = R.drawable.arkaplan;
 
         if(id%8 == 1)
@@ -38,13 +39,14 @@ public class Kart extends Button{
         setBackground(arka);
     }
     public void cevir(){
-        if(!acikMi){ // arkası cevriliyse
-            setBackground(on);
-            acikMi = true;
-        }
-        else{
-            setBackground(arka);
-            acikMi = false;
+        if(cevrilebilir) {
+            if (!acikMi) { // arkası cevriliyse
+                setBackground(on);
+                acikMi = true;
+            } else {
+                setBackground(arka);
+                acikMi = false;
+            }
         }
     }
 }

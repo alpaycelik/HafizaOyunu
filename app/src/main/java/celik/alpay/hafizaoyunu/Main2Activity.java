@@ -8,7 +8,9 @@ import android.widget.GridLayout;
 import android.widget.TextView;
 
 public class Main2Activity extends AppCompatActivity {
-
+    int sonKart = 0;
+    int skor = 0;
+    int hata = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +28,26 @@ public class Main2Activity extends AppCompatActivity {
                 public void onClick(View v) {
                    Kart k = (Kart) v;
                    k.cevir();
+                   if(sonKart>0){
+                       Kart k2 = (Kart) findViewById(sonKart);
+                       if(k2.onPlanID==k.onPlanID && k2.getId() != k.getId()){ //Eşlştiler
+                            k2.cevrilebilir = false;
+                            k.cevrilebilir = false;
+                            skor++;
+                            if(skor == 8){
+                                // Oyun bitti.
+                            }
+                       }
+                       else{ // Eşleşmediler 2 kartı geri çevir.
+                           k.cevir();
+                           k2.cevir();
+                           hata++;
+                           sonKart = 0;
+                       }
+                   }
+                   else{
+                       sonKart = k.getId();
+                   }
                 }
             });
         }
