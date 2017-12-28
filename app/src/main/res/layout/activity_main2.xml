@@ -11,6 +11,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
-        tools:layout_editor_absoluteX="163dp"
-        tools:layout_editor_absoluteY="154dp" />
+        tools:layout_editor_absoluteX="154dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <GridLayout
+        android:id="@+id/kartlar"
+        android:layout_width="wrap_content"
+        android:layout_height="460dp"
+        android:columnCount="4"
+        android:rowCount="4"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="43dp">
+
+    </GridLayout>
 </android.support.constraint.ConstraintLayout>

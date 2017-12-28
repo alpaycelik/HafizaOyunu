@@ -3,6 +3,7 @@ package celik.alpay.hafizaoyunu;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.GridLayout;
 import android.widget.TextView;
 
 public class Main2Activity extends AppCompatActivity {
@@ -15,5 +16,8 @@ public class Main2Activity extends AppCompatActivity {
         String s = i.getStringExtra("mesaj");
         TextView tv = (TextView) findViewById(R.id.textView);
         tv.setText(s);
+        GridLayout gl = (GridLayout) findViewById(R.id.kartlar);
+        for (int j = 0; j<10; j++)
+            gl.addView(new Kart(this));
     }
 }
