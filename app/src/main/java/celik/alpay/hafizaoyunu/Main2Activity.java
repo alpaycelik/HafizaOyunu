@@ -1,6 +1,7 @@
 package celik.alpay.hafizaoyunu;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -16,7 +17,7 @@ public class Main2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
         Intent i = getIntent();
-        String s = i.getStringExtra("mesaj");
+        final String s = i.getStringExtra("mesaj");
         TextView tv = (TextView) findViewById(R.id.textView);
         tv.setText(s);
         GridLayout gl = (GridLayout) findViewById(R.id.kartlar);
@@ -26,22 +27,35 @@ public class Main2Activity extends AppCompatActivity {
             kartlar[j-1].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                   Kart k = (Kart) v;
+                   final Kart k = (Kart) v;
                    k.cevir();
                    if(sonKart>0){
-                       Kart k2 = (Kart) findViewById(sonKart);
-                       if(k2.onPlanID==k.onPlanID && k2.getId() != k.getId()){ //Eşlştiler
+                       final Kart k2 = (Kart) findViewById(sonKart);
+                       if((k2.onPlanID == k.onPlanID) && (k2.getId() != k.getId())){ //Eşleştiler
                             k2.cevrilebilir = false;
                             k.cevrilebilir = false;
                             skor++;
-                            if(skor == 8){
-                                // Oyun bitti.
+                            TextView tvS = (TextView) findViewById(R.id.tvSkor);
+                            tvS.setText("Skorunuz: "+skor);
+                            if(skor == 8){// Oyun bitti.
+                                Intent i = new Intent(Main2Activity.this, Main3Activity.class);
+                                i.putExtra("puan",hata);
+                                i.putExtra("isim",s);
+                                startActivity(i);
                             }
                        }
                        else{ // Eşleşmediler 2 kartı geri çevir.
-                           k.cevir();
-                           k2.cevir();
+                           Handler h = new Handler();
+                           h.postDelayed(new Runnable() {
+                               @Override
+                               public void run() {
+                                   k.cevir();
+                                   k2.cevir();
+                               }
+                           },500);
                            hata++;
+                           TextView tvH = (TextView) findViewById(R.id.tvHata);
+                           tvH.setText("Hata Sayısı: "+hata);
                            sonKart = 0;
                        }
                    }

@@ -19,10 +19,29 @@
         android:layout_width="wrap_content"
         android:layout_height="460dp"
         android:columnCount="4"
+        android:paddingBottom="20dp"
         android:paddingVertical="24dp"
         android:rowCount="4"
-        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteX="2dp"
         tools:layout_editor_absoluteY="43dp">
 
     </GridLayout>
+
+    <TextView
+        android:id="@+id/tvSkor"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="456dp"
+        android:text="Skor"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="58dp" />
+
+    <TextView
+        android:id="@+id/tvHata"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="420dp"
+        android:text="Hata"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        tools:layout_editor_absoluteX="196dp" />
 </android.support.constraint.ConstraintLayout>
